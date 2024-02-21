@@ -9,9 +9,12 @@ public class execute {
         buddy.becomeExposed();
         buddy.Debug();
 
-        for(int i = 0;i <40; i++){
+        MTRandom ran = new MTRandom();
+
+        /*for(int i = 0;i <40; i++){
         buddy.update();
         buddy.Debug();
-        }
+        }*/
+
     }
 }

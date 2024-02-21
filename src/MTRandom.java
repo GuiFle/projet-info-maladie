@@ -1,4 +1,4 @@
-package nedragtna.random;
+package tp.common;
 
 /*
  * MTRandom : A Java implementation of the MT19937 (Mersenne Twister)
