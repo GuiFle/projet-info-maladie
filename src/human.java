@@ -17,12 +17,22 @@ public class human {
         this.statusTime = statusTime;
     }
 
+    public String toString(){
+        return "Status:" + status 
+        + " T:" + String.valueOf(statusTime) + " dE:" + String.valueOf(dE)
+        + " dI:" + String.valueOf(dI) + " dR:" + String.valueOf(dR);
+    }
+
+    public void Debug(){
+        System.out.println(toString());
+    }
+
     public String get_status(){
         return status;
     }
 
     public void becomeExposed() throws Exception {
-        if (status == "R"){
+        if (status != "S"){
             throw new Exception("Cannot become Exposed");
         }
         else{
@@ -30,20 +40,21 @@ public class human {
         }
     }
 
-    public void updateStatus(){
+    public void update(){
+        statusTime += 1;
         if (status == "E" && statusTime > dE){
-            status == "I";
+            status = "I";
+            statusTime = 0;
         }
         else if (status == "I" && statusTime > dI){
-            status == "R";
+            status = "R";
+            statusTime = 0;
         }
         else if (status == "R" && statusTime > dR){
-            status == "S";
+            status = "S";
+            statusTime = 0;
         }
     }
 
-    public void becomeOlder(){
-        statusTime += 1;
-    }
 
 }
