@@ -13,7 +13,7 @@ public class execute {
 
         /*for(int i = 0;i <40; i++){
         buddy.update();
-        buddy.Debug();
+        buddy.Debug();t
         }*/
 
     }
