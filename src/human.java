@@ -5,11 +5,11 @@ public class human {
     private String status;
     private int statusTime;
 
-    private final int dE;
-    private final int dI;
-    private final int dR;
+    private final double dE;
+    private final double dI;
+    private final double dR;
 
-    public human(String status,int statusTime,int dE,int dI,int dR){
+    public human(String status,int statusTime,double dE,double dI,double dR){
         this.status = status;
         this.dE = dE;
         this.dI = dI;
