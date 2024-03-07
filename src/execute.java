@@ -7,7 +7,7 @@ import java.lang.Math;
 public class execute {
 
     private static double negExp(double inMean, MTRandom ran){
-        return -inMean * Math.log(1 - ran.nextDouble(1));
+        return -inMean * Math.log(1 - ran.nextDouble());
     }
 
     private static void areYouSickNow(human buddy,MTRandom ran){
