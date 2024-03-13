@@ -1,5 +1,7 @@
 package tp.common;
-import tp.common.human;
+
+import tp.common.*;
+import utility.MersenneTwister;
 
 
 public class execute {
@@ -9,7 +11,7 @@ public class execute {
         buddy.becomeExposed();
         buddy.Debug();
 
-        MTRandom ran = new MTRandom();
+        MersenneTwister ran = new MersenneTwister(12546);
 
         /*for(int i = 0;i <40; i++){
         buddy.update();
