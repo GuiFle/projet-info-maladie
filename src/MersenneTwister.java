@@ -871,4 +871,8 @@ public strictfp class MersenneTwister
 
     }
 
+    public double negExp(double inMean){
+        return -inMean * Math.log( 1.0 - nextDouble());
+    }
+
 }

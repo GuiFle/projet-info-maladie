@@ -1,4 +1,5 @@
 package tp.common;
+import utility.MersenneTwister;
 
 public class human {
 
@@ -7,12 +8,16 @@ public class human {
     private int statusTime;
 
     // Variables finales pour les durées d'exposition, d'infection et de récupération
-    private final double dE;
-    private final double dI;
-    private final double dR;
+    private final int dE;
+    private final int dI;
+    private final int dR;
+
+    public int x;
+    public int y;    
+        
 
     // Constructeur de la classe human
-    public human(String status, int statusTime, double dE, double dI, double dR) {
+    public human(String status, int statusTime, int dE, int dI, int dR) {
         this.status = status;
         this.dE = dE;
         this.dI = dI;
@@ -20,6 +25,20 @@ public class human {
         this.statusTime = statusTime;
     }
 
+    public human(String status, MersenneTwister ran) {
+        this.status = status;
+        this.dE = (int)ran.negExp(3);
+        this.dI = (int)ran.negExp(7);
+        this.dR = (int)ran.negExp(365);
+        this.statusTime = 0;
+    }
+
+
+    public void changePos(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+    
     // Méthode pour afficher l'état actuel de l'humain
     public String toString() {
         return "Status:" + status 
