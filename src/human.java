@@ -57,10 +57,10 @@ public class human {
     }
 
     // Méthode pour passer à l'état exposé
-    public void becomeExposed() throws Exception {
+    public void becomeExposed() {
         // Vérifier si l'humain est déjà exposé
         if (status != "S") {
-            throw new Exception("Cannot become Exposed");
+            System.out.println("Error Cannot become Exposed");;
         } else {
             status = "E"; // Passer à l'état exposé
         }
