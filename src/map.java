@@ -170,7 +170,7 @@ public class map {
             }
         }
         
-        return s +"," + e +"," + i + "," + r;
+        return s +"," + e +"," + i + "," + r+"\n";
     }
 
     // Méthode pour ajouter un humain à la position (x, y) de la grille

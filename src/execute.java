@@ -16,8 +16,8 @@ public class execute {
     private map map;
     
 
-    public execute(int mapSize, int nbHumanSus, int nbHumanIll){
-        this.ran = new MersenneTwister(4357);
+    public execute(int mapSize, int nbHumanSus, int nbHumanIll, MersenneTwister ran){
+        this.ran = ran;
         this.map = new map(mapSize);
         map.addAllHumans(ran,nbHumanSus,"S");
         map.addAllHumans(ran,nbHumanIll,"I");
@@ -50,11 +50,6 @@ public class execute {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile()))) {
                 for (int i = 0; i < strings.length; i++) {
                     writer.write(strings[i]); // Write each string without quotes
-    
-                    // Add comma except for the last string
-                    if (i < strings.length - 1) {
-                        writer.write(",");
-                    }
                 }
                 writer.newLine(); // Start a new line for the next row
                 System.out.println("Strings have been written to the CSV file.");
@@ -74,22 +69,25 @@ public class execute {
         int nbHumanSus = 19990;
         int nbHumanIll = 10;
         int nbIteration = 730;
+        MersenneTwister ran = new MersenneTwister(4357);
+        int nbExperiments = 100;
+        
+        for (int j=0;j<nbExperiments;j++){
+            execute exe = new execute(mapSize, nbHumanSus, nbHumanIll,ran);
+            ArrayList<String> results = new ArrayList<String>(); 
+        
+            for (int i = 0; i < nbIteration; i++) {
+                results.add(exe.map.debugGlobalStatus());
+                exe.map.update(exe.ran);
+                updateLoadingBar(i, nbIteration);
+            }
     
-        execute exe = new execute(mapSize, nbHumanSus, nbHumanIll);
-        ArrayList<String> results = new ArrayList<String>(); 
-    
-    
-    
-        for (int i = 0; i < nbIteration; i++) {
-            exe.map.update(exe.ran);
-            updateLoadingBar(i, nbIteration);
-            results.add(exe.map.debugGlobalStatus());
+            updateLoadingBar(nbIteration, nbIteration);
+            System.out.println("\nexperiment number: "+(j+1)+" completed");
+            writeStringsToCSV("results/SEIR" + (j+1) + ".csv", results.toArray(new String[0]));
         }
+        
 
-        updateLoadingBar(nbIteration, nbIteration);
-        System.err.println();
-
-        writeStringsToCSV("results/result" + 1 + ".csv", results.toArray(new String[0]));
 
     }
     
